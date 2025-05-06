@@ -13,6 +13,7 @@
 		AE781E7A2DCA6ED400468153 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = AE781E792DCA6ED400468153 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		AE781E7C2DCA6ED400468153 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = AE781E7B2DCA6ED400468153 /* FirebaseAppCheck */; };
 		AE781E7E2DCA6ED400468153 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = AE781E7D2DCA6ED400468153 /* FirebaseAppDistribution-Beta */; };
+		AE781E8D2DCA714400468153 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = AE781E8C2DCA714400468153 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 				AE781E7E2DCA6ED400468153 /* FirebaseAppDistribution-Beta in Frameworks */,
 				AE781E7A2DCA6ED400468153 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				AE781E782DCA6ED400468153 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				AE781E8D2DCA714400468153 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,6 +51,7 @@
 			children = (
 				AE4978892DCA496900C21BDA /* Resources */,
 				AE49787D2DCA491800C21BDA /* Sources */,
+				AE781E8B2DCA714400468153 /* Frameworks */,
 				AE49787C2DCA491800C21BDA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +70,13 @@
 				AE4978822DCA491900C21BDA /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		AE781E8B2DCA714400468153 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,6 +104,7 @@
 				AE781E792DCA6ED400468153 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				AE781E7B2DCA6ED400468153 /* FirebaseAppCheck */,
 				AE781E7D2DCA6ED400468153 /* FirebaseAppDistribution-Beta */,
+				AE781E8C2DCA714400468153 /* FirebaseFirestore */,
 			);
 			productName = Unsolved;
 			productReference = AE49787B2DCA491800C21BDA /* Unsolved.app */;
@@ -394,6 +405,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AE781E742DCA6ED400468153 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseAppDistribution-Beta";
+		};
+		AE781E8C2DCA714400468153 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE781E742DCA6ED400468153 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
