@@ -1,6 +1,8 @@
 ### Custom ###
 # Firebase
 GoogleService-Info.plist
+.env
+*.xcconfig
 
 ### Xcode ###
 ## User settings
@@ -18,3 +20,4 @@ xcuserdata/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+.env
