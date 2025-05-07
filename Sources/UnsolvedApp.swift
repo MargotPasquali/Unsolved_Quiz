@@ -26,7 +26,7 @@ struct UnsolvedApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WelcomeView()
         }
     }
 }
