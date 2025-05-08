@@ -1,6 +1,44 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "before_begging_a_new_game" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Before beginning"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avant de commencer"
+          }
+        }
+      }
+    },
+    "choose_name_text" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your nickname:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez votre pseudo :"
+          }
+        }
+      }
+    },
+    "Hello, World!" : {
+
+    },
     "new_game_button" : {
       "localizations" : {
         "en" : {
@@ -17,6 +55,9 @@
         }
       }
     },
+    "None" : {
+
+    },
     "Quiz" : {
       "localizations" : {
         "en" : {
@@ -29,6 +70,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Quiz"
+          }
+        }
+      }
+    },
+    "start_game_button" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let’s go!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "C’est parti !"
           }
         }
       }
