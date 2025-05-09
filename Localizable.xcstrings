@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "Anecdote : Découvert à la dérive dans l’Atlantique, le Mary Celeste avait ses voiles partiellement déployées et ses provisions intactes, mais l’équipage avait disparu. Les hypothèses incluent des pirates ou des extraterrestres, sans preuve définitive." : {
+
+    },
     "before_begging_a_new_game" : {
       "localizations" : {
         "en" : {
@@ -19,6 +22,12 @@
           }
         }
       }
+    },
+    "Bonne réponse" : {
+
+    },
+    "Bravo, c'est exact!" : {
+
     },
     "choose_name_text" : {
       "localizations" : {
@@ -36,7 +45,45 @@
         }
       }
     },
-    "Hello, World!" : {
+    "congrats_text" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Well done"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bravo !"
+          }
+        }
+      }
+    },
+    "game_is_over" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The game is over"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Le jeu est terminé"
+          }
+        }
+      }
+    },
+    "Gom4r" : {
+
+    },
+    "Joueur1" : {
+
+    },
+    "Mauvaise réponse" : {
 
     },
     "new_game_button" : {
@@ -55,7 +102,64 @@
         }
       }
     },
+    "new_question_button" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next question"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Question suivante"
+          }
+        }
+      }
+    },
     "None" : {
+
+    },
+    "Photo de profil" : {
+
+    },
+    "player_name_title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Player"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nom"
+          }
+        }
+      }
+    },
+    "players_raking_button" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Player rankings"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Classement des joueurs"
+          }
+        }
+      }
+    },
+    "Quel est le nom du navire fantôme retrouvé intact en 1872, mais sans aucun membre d’équipage à bord ?" : {
+
+    },
+    "Question 1" : {
 
     },
     "Quiz" : {
@@ -73,6 +177,47 @@
           }
         }
       }
+    },
+    "replay_button" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play again"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rejouer"
+          }
+        }
+      }
+    },
+    "Réponse 1" : {
+
+    },
+    "Score" : {
+
+    },
+    "Score_text_title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Score"
+          }
+        }
+      }
+    },
+    "Score: 5" : {
+
     },
     "start_game_button" : {
       "localizations" : {
@@ -105,6 +250,9 @@
           }
         }
       }
+    },
+    "Votre score: 12/25" : {
+
     }
   },
   "version" : "1.0"

@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MainQuizView: View {
     var body: some View {
         ZStack {
             Color.lightGray
                 .ignoresSafeArea()
+
             VStack {
                 HeaderView()
                 ZStack {
@@ -27,16 +29,33 @@ struct MainQuizView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 19)
                         .stroke(Color.violet, lineWidth: 4)
+                        .padding(-1)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     VStack {
-                        Rectangle()
-                            .frame(maxWidth: .infinity, maxHeight: 225)
-                            .foregroundColor(.violet)
+
+                        if let url = URL(string: "https://cdn.stocksnap.io/img-thumbs/960w/ship-wreck_B2MQOD11GA.jpg") {
+                            KFImage(url)
+                                .placeholder {
+                                    RoundedRectangle(cornerRadius: 19)
+                                        .frame(maxWidth: .infinity, maxHeight: 225)
+                                        .foregroundColor(.violet)
+                                }
+                                .resizable()
+                                .scaledToFill()
+                                .frame(maxWidth: .infinity, maxHeight: 225)
+                                .clipShape(RoundedRectangle(cornerRadius: 19, ))
+                        } else {
+                            RoundedRectangle(cornerRadius: 19)
+                                .frame(maxWidth: .infinity, maxHeight: 225)
+                                .foregroundColor(.violet)
+                        }
+
+                        
                         
                         Text("Quel est le nom du navire fantôme retrouvé intact en 1872, mais sans aucun membre d’équipage à bord ?")
                             .font(Font.custom("Dongle-Regular", size: 26))
                             .foregroundStyle(Color.navyBlue)
-                            .lineSpacing(-15)
+                            .lineSpacing(0)
                         
                         ZStack {
                             RoundedRectangle(cornerRadius: 19)
@@ -48,6 +67,7 @@ struct MainQuizView: View {
                                 .padding()
                             
                         }
+                        Spacer()
                     }
                 }
                 
