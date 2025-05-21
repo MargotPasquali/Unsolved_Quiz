@@ -1,14 +1,14 @@
 //
-//  Question.swift
+//  Player.swift
 //  Unsolved
 //
-//  Created by Margot Pasquali on 06/05/2025.
+//  Created by Margot Pasquali on 14/05/2025.
 //
 
 import Foundation
 import FirebaseFirestore
 
-struct Question: Codable, Identifiable {
+struct Player: Codable, Identifiable {
     @DocumentID var id: String?
     let question: TranslatedText
     let answers: [Answer]

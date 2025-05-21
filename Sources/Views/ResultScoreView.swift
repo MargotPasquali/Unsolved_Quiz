@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ResultScoreView: View {
+    let username: String
+
     var body: some View {
         ZStack {
             Color.lightGray
@@ -34,13 +36,14 @@ struct ResultScoreView: View {
                     RoundedRectangle(cornerRadius: 19)
                         .stroke(Color.navyBlue, lineWidth: 4)
                         .frame(width: 350, height: 50)
-                    Text("Votre score: 12/25")
+                    Text("Votre score: 5/20")
                         .foregroundStyle(Color.navyBlue)
                         .font(Font.custom("Dongle-Bold", size: 48))
-                }.padding(.bottom, 20)
+                }
+                .padding(.bottom, 20)
                 
                 Spacer()
-                NavigationLink(destination: MainQuizView()) {
+                NavigationLink(destination: MainQuizView(viewModel: MainQuizViewModel(username: username))) {
                     Text("players_raking_button")
                         .frame(width: 350, height: 50)
                         .padding(5)
@@ -48,9 +51,10 @@ struct ResultScoreView: View {
                         .font(Font.custom("Dongle-Bold", size: 40))
                         .foregroundStyle(Color.accent)
                         .cornerRadius(19)
-                }.padding(.bottom, 10)
+                }
+                .padding(.bottom, 10)
 
-                NavigationLink(destination: WelcomeView()) {
+                NavigationLink(destination: WelcomeView(viewModel: StartNewGameViewModel())) {
                     Text("replay_button")
                         .frame(width: 350, height: 50)
                         .padding(5)
@@ -65,5 +69,5 @@ struct ResultScoreView: View {
 }
 
 #Preview {
-    ResultScoreView()
+    ResultScoreView(username: "test")
 }

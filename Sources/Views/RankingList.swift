@@ -4,6 +4,7 @@
 //
 //  Created by Margot Pasquali on 09/05/2025.
 //
+//
 
 import SwiftUI
 
@@ -41,7 +42,7 @@ struct RankingList: View {
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .padding(.bottom, 15)
                         
-                        NavigationLink(destination: WelcomeView()) {
+                        NavigationLink(destination: WelcomeView(viewModel: StartNewGameViewModel())) {
                             Text("replay_button")
                                 .frame(width: 350, height: 50)
                                 .padding(5)

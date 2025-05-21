@@ -9,74 +9,114 @@ import SwiftUI
 import Kingfisher
 
 struct MainQuizView: View {
+    @ObservedObject var viewModel: MainQuizViewModel
+    @State private var showingFeedback = false
+    @State private var selectedAnswerID: UUID?
+    @State private var isCorrect: Bool = false
+
+    init(viewModel: MainQuizViewModel) {
+        self.viewModel = viewModel
+    }
+
     var body: some View {
         ZStack {
             Color.lightGray
                 .ignoresSafeArea()
 
-            VStack {
-                HeaderView()
-                ZStack {
-                    RoundedRectangle(cornerRadius: 19)
-                        .stroke(Color.violet, lineWidth: 4)
-                        .frame(maxWidth: .infinity, maxHeight: 50)
-                    Text("Question 1")
-                        .font(Font.custom("Dongle-Regular", size: 40))
-                        .foregroundStyle(Color.violet)
-                        .padding()
-                }
-                
-                ZStack {
-                    RoundedRectangle(cornerRadius: 19)
-                        .stroke(Color.violet, lineWidth: 4)
-                        .padding(-1)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    VStack {
+            if viewModel.isQuizFinished {
+                ResultScoreView(username: viewModel.username)
+            } else if !viewModel.questions.isEmpty {
+                let currentQuestion = viewModel.questions[viewModel.currentQuestionIndex]
+                VStack {
+                    HeaderView(username: viewModel.username)
 
-                        if let url = URL(string: "https://cdn.stocksnap.io/img-thumbs/960w/ship-wreck_B2MQOD11GA.jpg") {
-                            KFImage(url)
-                                .placeholder {
-                                    RoundedRectangle(cornerRadius: 19)
-                                        .frame(maxWidth: .infinity, maxHeight: 225)
-                                        .foregroundColor(.violet)
-                                }
-                                .resizable()
-                                .scaledToFill()
-                                .frame(maxWidth: .infinity, maxHeight: 225)
-                                .clipShape(RoundedRectangle(cornerRadius: 19, ))
-                        } else {
-                            RoundedRectangle(cornerRadius: 19)
-                                .frame(maxWidth: .infinity, maxHeight: 225)
-                                .foregroundColor(.violet)
-                        }
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 19)
+                            .stroke(Color.violet, lineWidth: 4)
+                            .frame(maxWidth: .infinity, maxHeight: 50)
+                        Text("Question \(viewModel.currentQuestionIndex + 1)")
+                            .font(Font.custom("Dongle-Regular", size: 40))
+                            .foregroundStyle(Color.violet)
+                            .padding()
+                    }
 
-                        
-                        
-                        Text("Quel est le nom du navire fantôme retrouvé intact en 1872, mais sans aucun membre d’équipage à bord ?")
-                            .font(Font.custom("Dongle-Regular", size: 26))
-                            .foregroundStyle(Color.navyBlue)
-                            .lineSpacing(0)
-                        
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 19)
-                                .foregroundStyle(Color.navyBlue)
-                                .frame(maxWidth: 300, maxHeight: 50)
-                            Text("Réponse 1")
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 19)
+                            .stroke(Color.violet, lineWidth: 4)
+                            .padding(-1)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        VStack {
+                            if let url = URL(string: currentQuestion.imageUrl) {
+                                KFImage(url)
+                                    .placeholder {
+                                        UnevenRoundedRectangle(cornerRadii: .init(topLeading: 19, topTrailing: 19))
+                                            .frame(maxWidth: .infinity, maxHeight: 225)
+                                            .foregroundColor(.violet)
+                                    }
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(maxWidth: .infinity, maxHeight: 160)
+                                    .clipShape(UnevenRoundedRectangle(cornerRadii: .init(topLeading: 19, topTrailing: 19)))
+                            } else {
+                                UnevenRoundedRectangle(cornerRadii: .init(topLeading: 19, topTrailing: 19))
+                                    .frame(maxWidth: .infinity, maxHeight: 225)
+                                    .foregroundColor(.violet)
+                            }
+
+                            Text(currentQuestion.question.fr)
                                 .font(Font.custom("Dongle-Regular", size: 26))
-                                .foregroundStyle(Color.lightGray)
-                                .padding()
-                            
+                                .foregroundStyle(Color.navyBlue)
+                                .lineLimit(nil)
+                                .lineSpacing(0)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.horizontal)
+
+                            ForEach(currentQuestion.answers) { answer in
+                                Button(action: {
+                                    selectedAnswerID = answer.id
+                                    isCorrect = viewModel.isQuestionCorrect(
+                                        question: currentQuestion,
+                                        selectedAnswerID: answer.id
+                                    )
+                                    showingFeedback = true
+                                }) {
+                                        Text(answer.text.fr)
+                                            .font(Font.custom("Dongle-Regular", size: 26))
+                                            .foregroundStyle(Color.lightGray)
+                                            .padding()
+                                }.clipShape(RoundedRectangle(cornerRadius: 19))
+                                    .foregroundStyle(Color.navyBlue)
+                                    .frame(maxWidth: 300, maxHeight: 50)
+                            }
+                            Spacer()
                         }
-                        Spacer()
                     }
                 }
-                
+                .padding(.horizontal, 20)
+                .sheet(isPresented: $showingFeedback) {
+                    AnswerRevealView(
+                        isCorrect: isCorrect,
+                        anecdote: currentQuestion.anecdote.fr,
+                        onContinue: {
+                            viewModel.answerQuestion(selectedAnswerID: selectedAnswerID!)
+                            showingFeedback = false
+                        }
+                    )
+                }
+            } else {
+                Text("questions_loading_text")
+                    .font(Font.custom("Dongle-Regular", size: 26))
+                    .foregroundStyle(Color.navyBlue)
+                    .onAppear {
+                        Task {
+                            await viewModel.loadQuestions()
+                        }
+                    }
             }
-            .padding(.horizontal, 20)
         }
     }
 }
 
 #Preview {
-    MainQuizView()
+    MainQuizView(viewModel: MainQuizViewModel(username: "testUser"))
 }

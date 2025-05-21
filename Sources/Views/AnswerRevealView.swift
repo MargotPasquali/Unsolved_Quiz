@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct AnswerRevealView: View {
-    var isCorrect: Bool = false
+    let isCorrect: Bool
+    let anecdote: String
+    let onContinue: () -> Void
+
     var body: some View {
         ZStack {
             Color.lightGray
@@ -20,58 +23,57 @@ struct AnswerRevealView: View {
                 .padding(-1)
                 .frame(maxWidth: .infinity, maxHeight: 500)
 
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 10) {
+                Spacer()
                 ZStack {
                     RoundedRectangle(cornerRadius: 19)
                         .fill(Color.violet)
                         .padding(-1)
                         .frame(maxWidth: .infinity, maxHeight: 60)
-                    
-                    if isCorrect {
-                        Text("Bonne réponse")
-                            .font(Font.custom("Dongle-Bold", size: 40))
-                            .foregroundStyle(Color.accent)
-                    } else {
-                        Text("Mauvaise réponse")
-                            .font(Font.custom("Dongle-Bold", size: 40))
-                            .foregroundStyle(Color.pinkRed)
-                    }
+                    Text(isCorrect ? String(localized: "answer.correct") : String(localized: "answer.incorrect"))
+                        .font(Font.custom("Dongle-Bold", size: 40))
+                        .foregroundStyle(isCorrect ? Color.accent : Color.pinkRed)
                 }
-                Text("Bravo, c'est exact!")
+                
+                Text(FeedbackPhrase.random(for: isCorrect ? .good : .bad))
                     .font(Font.custom("Dongle-Bold", size: 26))
                     .foregroundStyle(Color.violet)
                     .padding(.leading, 10)
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
                 
-                Text("Anecdote : Découvert à la dérive dans l’Atlantique, le Mary Celeste avait ses voiles partiellement déployées et ses provisions intactes, mais l’équipage avait disparu. Les hypothèses incluent des pirates ou des extraterrestres, sans preuve définitive.")
+                Text("Anecdote : \(anecdote)")
                     .font(Font.custom("Dongle-Regular", size: 26))
                     .foregroundStyle(Color.navyBlue)
                     .padding(.leading, 10)
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.bottom, 40)
 
-                Button(action: {
-                    // TO DO
-                }) {
+                Button(action: onContinue) {
                     HStack {
                         Spacer()
                         ZStack {
                             Image("Next")
-                            Text("new_question_button")
+                            Text(String(localized: "new_question_button"))
                                 .font(Font.custom("Dongle-Bold", size: 28))
                                 .foregroundStyle(Color.navyBlue)
                         }
                         Spacer()
                     }
-                }.padding(.bottom, 73)
+                }
                 
-
-            }
-            
-        }.padding(.horizontal, 20)
-        
+                
+            }.offset(y: -270)
+        }
+        .padding(.horizontal, 20)
     }
 }
 
-
-
 #Preview {
-    AnswerRevealView()
+    AnswerRevealView(
+        isCorrect: true,
+        anecdote: "Découvert à la dérive dans l’Atlantique, le Mary Celeste avait ses voiles partiellement déployées et ses provisions intactes, mais l’équipage avait disparu.",
+        onContinue: {}
+    )
 }

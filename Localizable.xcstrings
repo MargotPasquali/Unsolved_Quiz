@@ -4,8 +4,40 @@
     "" : {
 
     },
-    "Anecdote : Découvert à la dérive dans l’Atlantique, le Mary Celeste avait ses voiles partiellement déployées et ses provisions intactes, mais l’équipage avait disparu. Les hypothèses incluent des pirates ou des extraterrestres, sans preuve définitive." : {
+    "Anecdote : %@" : {
 
+    },
+    "answer.correct" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good answer"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bonne réponse"
+          }
+        }
+      }
+    },
+    "answer.incorrect" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wrong answer"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mauvaise réponse"
+          }
+        }
+      }
     },
     "before_begging_a_new_game" : {
       "localizations" : {
@@ -22,12 +54,6 @@
           }
         }
       }
-    },
-    "Bonne réponse" : {
-
-    },
-    "Bravo, c'est exact!" : {
-
     },
     "choose_name_text" : {
       "localizations" : {
@@ -61,6 +87,9 @@
         }
       }
     },
+    "Entrez votre pseudo" : {
+
+    },
     "game_is_over" : {
       "localizations" : {
         "en" : {
@@ -77,13 +106,7 @@
         }
       }
     },
-    "Gom4r" : {
-
-    },
     "Joueur1" : {
-
-    },
-    "Mauvaise réponse" : {
 
     },
     "new_game_button" : {
@@ -118,12 +141,6 @@
         }
       }
     },
-    "None" : {
-
-    },
-    "Photo de profil" : {
-
-    },
     "player_name_title" : {
       "localizations" : {
         "en" : {
@@ -156,11 +173,24 @@
         }
       }
     },
-    "Quel est le nom du navire fantôme retrouvé intact en 1872, mais sans aucun membre d’équipage à bord ?" : {
+    "Question %lld" : {
 
     },
-    "Question 1" : {
-
+    "questions_loading_text" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questions are loading"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chargement des questions"
+          }
+        }
+      }
     },
     "Quiz" : {
       "localizations" : {
@@ -194,13 +224,11 @@
         }
       }
     },
-    "Réponse 1" : {
-
-    },
     "Score" : {
 
     },
     "Score_text_title" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -251,7 +279,7 @@
         }
       }
     },
-    "Votre score: 12/25" : {
+    "Votre score: 5/20" : {
 
     }
   },
