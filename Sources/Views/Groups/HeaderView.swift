@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HeaderView: View {
     let username: String
+    let score: Int
     
     var body: some View {
         HStack {
@@ -32,7 +33,7 @@ struct HeaderView: View {
                         .resizable()
                         .frame(width: 20, height: 20)
 
-                    Text("Score: 5")
+                    Text("Score: \(score)")
                         .font(.custom("Dongle-Regular", size: 26))
                         .foregroundStyle(Color.accentColor)
                 }
@@ -42,5 +43,5 @@ struct HeaderView: View {
 }
 
 #Preview {
-    HeaderView(username: "Test")
+    HeaderView(username: "Test", score: 5)
 }

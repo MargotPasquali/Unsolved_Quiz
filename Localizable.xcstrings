@@ -39,6 +39,12 @@
         }
       }
     },
+    "Aucune image" : {
+
+    },
+    "Aucune question disponible" : {
+
+    },
     "before_begging_a_new_game" : {
       "localizations" : {
         "en" : {
@@ -244,7 +250,7 @@
         }
       }
     },
-    "Score: 5" : {
+    "Score: %lld" : {
 
     },
     "start_game_button" : {

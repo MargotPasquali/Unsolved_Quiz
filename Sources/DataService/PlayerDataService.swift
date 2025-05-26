@@ -17,17 +17,20 @@ final class RemotePlayerDataService: PlayerDataService {
     private let db = Firestore.firestore()
     
     func saveUsername(_ username: String) async throws {
-        let data : [String: Any] = ["username": username, "timestamp": FieldValue.serverTimestamp()]
+        print("Tentative d'enregistrement du nom d'utilisateur: \(username)")
+        let data: [String: Any] = ["username": username, "timestamp": FieldValue.serverTimestamp(), "score": 0]
         try await db.collection("players").addDocument(data: data)
+        print("Nom d'utilisateur enregistré avec succès: \(username)")
     }
     
     func savePlayerScore(username: String, score: Int) async throws {
-        let data : [String: Any] = [
+        print("Tentative d'enregistrement du score pour \(username): \(score)")
+        let data: [String: Any] = [
             "player": username,
             "score": score,
             "timestamp": FieldValue.serverTimestamp()
         ]
-        
         try await db.collection("scores").addDocument(data: data)
+        print("Score enregistré avec succès pour \(username): \(score)")
     }
 }

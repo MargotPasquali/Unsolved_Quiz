@@ -8,12 +8,9 @@
 import Foundation
 
 final class StartNewGameViewModel: ObservableObject {
-    
-    // MARK: - Error handling
-    enum StartNewGameViewModelError : Error {
+    enum StartNewGameViewModelError: Error {
         case usernameEmpty
         case setUsernameFailed
-        
         
         var localizedDescription: String {
             switch self {
@@ -25,35 +22,41 @@ final class StartNewGameViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Constants
     private let playerDataService: PlayerDataService
-    
-    // MARK: - Properties
     @Published var username: String = ""
+    @Published var isLoading = false
     var errorMessage: String?
     
-    // MARK: - Init
     init(playerDataService: PlayerDataService = RemotePlayerDataService()) {
         self.playerDataService = playerDataService
     }
     
-    // MARK: - Functions
     func setUsername(username: String) async {
+        print("Tentative de définir le nom d'utilisateur: \(username)")
+        Task { @MainActor in isLoading = true }
         
         guard !username.isEmpty else {
-            errorMessage = StartNewGameViewModelError.usernameEmpty.localizedDescription
+            print("Erreur: le nom d'utilisateur est vide")
+            Task { @MainActor in
+                errorMessage = StartNewGameViewModelError.usernameEmpty.localizedDescription
+                isLoading = false
+            }
             return
         }
         
         do {
             try await playerDataService.saveUsername(username)
-            self.username = username
+            print("Nom d'utilisateur défini avec succès: \(username)")
+            Task { @MainActor in
+                self.username = username
+                isLoading = false
+            }
         } catch {
-            errorMessage = StartNewGameViewModelError.setUsernameFailed.localizedDescription
-            return
+            print("Erreur lors de la définition du nom d'utilisateur: \(error.localizedDescription)")
+            Task { @MainActor in
+                errorMessage = StartNewGameViewModelError.setUsernameFailed.localizedDescription
+                isLoading = false
+            }
         }
     }
 }
-
-
-

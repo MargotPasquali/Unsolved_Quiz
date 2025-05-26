@@ -8,12 +8,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @State private var isSheetPresented = false
-    @State private var userName: String = ""
-    @State private var shouldNavigateToQuiz = false
-    
     @ObservedObject var viewModel: StartNewGameViewModel
-
 
     var body: some View {
         NavigationStack {
@@ -29,12 +24,7 @@ struct WelcomeView: View {
                         .foregroundStyle(Color.accent)
                         .offset(x: 78, y: -70)
                     
-                    Button(action: {
-                        Task {
-                            await viewModel.setUsername(username: userName)
-                        }
-                        isSheetPresented = true
-                    }) {
+                    NavigationLink(destination: StartNewGameView(viewModel: viewModel)) {
                         Text("new_game_button")
                             .frame(width: 240, height: 50)
                             .padding()
@@ -52,15 +42,11 @@ struct WelcomeView: View {
                     .offset(y: -99)
                 }
             }
-            .sheet(isPresented: $isSheetPresented) {
-                NewGameSheetView(viewModel: viewModel)
-            }
-            .navigationDestination(isPresented: $shouldNavigateToQuiz) {
-                MainQuizView(viewModel: MainQuizViewModel(username: viewModel.username))
+
             }
         }
     }
-}
+
 
 #Preview {
     WelcomeView(viewModel: StartNewGameViewModel())

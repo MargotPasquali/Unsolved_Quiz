@@ -11,7 +11,7 @@ struct AnimatedBackground: View {
     // MARK: - Constants
     let pattern1 = "Pattern1"
     let pattern2 = "Pattern2"
-    let imageWidth: CGFloat = 600
+    let imageWidth: CGFloat = 700
     let bandHeight: CGFloat = 80
     let repeatCount = 5
 

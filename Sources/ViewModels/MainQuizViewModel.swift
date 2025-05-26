@@ -7,8 +7,8 @@
 
 import Foundation
 
+@MainActor
 final class MainQuizViewModel: ObservableObject {
-    
     enum MainQuizViewModelError: Error {
         case questionLoadingFailed
         case savingScoreFailed
@@ -23,15 +23,15 @@ final class MainQuizViewModel: ObservableObject {
         }
     }
     
-    //fetchNextQuestion
     private let questionService: QuestionsDataService
-    private let totalQuestions = 10 // Nombre total de questions souhaité
+    private let totalQuestions = 10
     let username: String
     
-    @Published var questions: [Question] = [] // Liste des questions
-    @Published var currentQuestionIndex = 0 // Index de la question actuelle
-    @Published var score = 0 // Score de l’utilisateur
-    @Published var isQuizFinished = false // Indicateur de fin de quiz
+    @Published var questions: [Question] = []
+    @Published var currentQuestionIndex = 0
+    @Published var score = 0
+    @Published var isQuizFinished = false
+    @Published var isLoading = true
     
     var errorMessage: String?
 
@@ -42,24 +42,39 @@ final class MainQuizViewModel: ObservableObject {
     
     func loadQuestions() async {
         do {
-            questions = try await questionService.fetchQuestionsForUser(limit: totalQuestions)
+            let fetchedQuestions = try await questionService.fetchQuestionsForUser(limit: totalQuestions)
+            print("Questions récupérées : \(fetchedQuestions.count)") // Devrait afficher 10
+            await MainActor.run {
+                print("Avant assignation : questions.count = \(questions.count)") // Devrait afficher 0
+                questions = fetchedQuestions
+                isLoading = false
+                print("Après assignation : questions.count = \(questions.count)") // Devrait afficher 10
+            }
         } catch {
-            errorMessage = MainQuizViewModelError.questionLoadingFailed.localizedDescription
+            await MainActor.run {
+                errorMessage = "Erreur lors du chargement des questions : \(error.localizedDescription)"
+                isLoading = false
+                print("Erreur : \(error.localizedDescription)")
+            }
         }
     }
     
-    // Gérer la réponse à une question
     func answerQuestion(selectedAnswerID: UUID) {
+        print("Réponse sélectionnée pour la question \(currentQuestionIndex + 1): \(selectedAnswerID)")
         let currentQuestion = questions[currentQuestionIndex]
         if questionService.isQuestionCorrect(question: currentQuestion, selectedAnswerID: selectedAnswerID) {
-            score += 1 // Incrémenter le score si la réponse est correcte
+            score += 1
+            print("Réponse correcte, score actuel: \(score)")
+        } else {
+            print("Réponse incorrecte")
         }
         
-        // Vérifier s’il reste des questions
         if currentQuestionIndex < questions.count - 1 {
-            currentQuestionIndex += 1 // Passer à la question suivante
+            currentQuestionIndex += 1
+            print("Passage à la question suivante: \(currentQuestionIndex + 1)")
         } else {
-            isQuizFinished = true // Terminer le quiz si c’est la dernière question
+            isQuizFinished = true
+            print("Quiz terminé, score final: \(score)")
         }
     }
     
@@ -68,12 +83,12 @@ final class MainQuizViewModel: ObservableObject {
     }
     
     func saveScore() async {
+        print("Tentative d'enregistrement du score pour \(username): \(score)")
         do {
-            try await RemotePlayerDataService().savePlayerScore(
-                username: self.username,
-                score: self.score
-            )
+            try await RemotePlayerDataService().savePlayerScore(username: self.username, score: self.score)
+            print("Score enregistré avec succès")
         } catch {
+            print("Erreur lors de l'enregistrement du score: \(error.localizedDescription)")
             errorMessage = MainQuizViewModelError.savingScoreFailed.localizedDescription
         }
     }
