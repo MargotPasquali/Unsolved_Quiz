@@ -17,12 +17,12 @@ struct AnswerRevealView: View {
             Color.lightGray
                 .ignoresSafeArea()
                 .opacity(0.3)
-            
+
             ZStack {
                 RoundedRectangle(cornerRadius: 19)
                     .fill(Color.lightGray)
                     .frame(maxWidth: .infinity, maxHeight: 500)
-                
+
                 RoundedRectangle(cornerRadius: 19)
                     .stroke(Color.violet, lineWidth: 4)
                     .frame(maxWidth: .infinity, maxHeight: 500)
@@ -35,7 +35,7 @@ struct AnswerRevealView: View {
                         UnevenRoundedRectangle(cornerRadii: .init(topLeading: 19, topTrailing: 19))
                             .fill(Color.violet)
                             .frame(maxWidth: .infinity, maxHeight: 60)
-                        
+
                         HStack {
                             Text(isCorrect ? String(localized: "answer.correct") : String(localized: "answer.incorrect"))
                                 .font(Font.custom("Dongle-Bold", size: 40))
@@ -44,14 +44,14 @@ struct AnswerRevealView: View {
                             Spacer()
                         }
                     }
-                    
+
                     Text(FeedbackPhrase.random(for: isCorrect ? .good : .bad))
                         .font(Font.custom("Dongle-Bold", size: 26))
                         .foregroundStyle(Color.violet)
                         .padding(.leading, 10)
                         .lineLimit(nil)
                         .fixedSize(horizontal: false, vertical: true)
-                    
+
                     Text("Anecdote : \(anecdote)")
                         .font(Font.custom("Dongle-Regular", size: 26))
                         .foregroundStyle(Color.navyBlue)

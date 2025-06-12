@@ -23,7 +23,7 @@ struct WelcomeView: View {
                         .font(.custom("RubikGlitch-Regular", size: 64))
                         .foregroundStyle(Color.accent)
                         .offset(x: 78, y: -70)
-                    
+
                     NavigationLink(destination: StartNewGameView(viewModel: viewModel)) {
                         Text("new_game_button")
                             .frame(width: 240, height: 50)
@@ -46,7 +46,6 @@ struct WelcomeView: View {
             }
         }
     }
-
 
 #Preview {
     WelcomeView(viewModel: StartNewGameViewModel())

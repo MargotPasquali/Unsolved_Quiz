@@ -41,7 +41,7 @@ struct ResultScoreView: View {
                         .font(Font.custom("Dongle-Bold", size: 48))
                 }
                 .padding(.bottom, 20)
-                
+
                 Spacer()
                 NavigationLink(destination: RankingList(viewModel: EndGameViewModel())) {
                     Text("players_raking_button")

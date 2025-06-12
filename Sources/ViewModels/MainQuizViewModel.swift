@@ -12,7 +12,7 @@ final class MainQuizViewModel: ObservableObject {
     enum MainQuizViewModelError: Error {
         case questionLoadingFailed
         case savingScoreFailed
-        
+
         var localizedDescription: String {
             switch self {
             case .questionLoadingFailed:
@@ -22,24 +22,24 @@ final class MainQuizViewModel: ObservableObject {
             }
         }
     }
-    
+
     private let questionService: QuestionsDataService
     private let totalQuestions = 10
     let username: String
-    
+
     @Published var questions: [Question] = []
     @Published var currentQuestionIndex = 0
     @Published var score = 0
     @Published var isQuizFinished = false
     @Published var isLoading = true
-    
+
     var errorMessage: String?
 
     init(username: String, questionsDataService: QuestionsDataService = RemoteQuestionsDataService()) {
         self.username = username
         self.questionService = questionsDataService
     }
-    
+
     func loadQuestions() async {
         do {
             let fetchedQuestions = try await questionService.fetchQuestionsForUser(limit: totalQuestions)
@@ -58,7 +58,7 @@ final class MainQuizViewModel: ObservableObject {
             }
         }
     }
-    
+
     func answerQuestion(selectedAnswerID: UUID) {
         print("Réponse sélectionnée pour la question \(currentQuestionIndex + 1): \(selectedAnswerID)")
         let currentQuestion = questions[currentQuestionIndex]
@@ -68,7 +68,7 @@ final class MainQuizViewModel: ObservableObject {
         } else {
             print("Réponse incorrecte")
         }
-        
+
         if currentQuestionIndex < questions.count - 1 {
             currentQuestionIndex += 1
             print("Passage à la question suivante: \(currentQuestionIndex + 1)")
@@ -77,11 +77,11 @@ final class MainQuizViewModel: ObservableObject {
             print("Quiz terminé, score final: \(score)")
         }
     }
-    
+
     func isQuestionCorrect(question: Question, selectedAnswerID: UUID) -> Bool {
         return questionService.isQuestionCorrect(question: question, selectedAnswerID: selectedAnswerID)
     }
-    
+
     func saveScore() async {
         print("Tentative d'enregistrement du score pour \(username): \(score)")
         do {

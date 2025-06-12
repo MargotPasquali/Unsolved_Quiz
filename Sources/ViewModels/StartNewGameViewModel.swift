@@ -11,7 +11,7 @@ final class StartNewGameViewModel: ObservableObject {
     enum StartNewGameViewModelError: Error {
         case usernameEmpty
         case setUsernameFailed
-        
+
         var localizedDescription: String {
             switch self {
             case .usernameEmpty:
@@ -21,20 +21,20 @@ final class StartNewGameViewModel: ObservableObject {
             }
         }
     }
-    
+
     private let playerDataService: PlayerDataService
     @Published var username: String = ""
     @Published var isLoading = false
     var errorMessage: String?
-    
+
     init(playerDataService: PlayerDataService = RemotePlayerDataService()) {
         self.playerDataService = playerDataService
     }
-    
+
     func setUsername(username: String) async {
         print("Tentative de définir le nom d'utilisateur: \(username)")
         Task { @MainActor in isLoading = true }
-        
+
         guard !username.isEmpty else {
             print("Erreur: le nom d'utilisateur est vide")
             Task { @MainActor in
@@ -43,7 +43,7 @@ final class StartNewGameViewModel: ObservableObject {
             }
             return
         }
-        
+
         do {
             try await playerDataService.saveUsername(username)
             print("Nom d'utilisateur défini avec succès: \(username)")

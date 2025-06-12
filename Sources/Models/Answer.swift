@@ -11,7 +11,7 @@ struct Answer: Codable, Identifiable {
     let id = UUID()
     let text: TranslatedText
     let isCorrect: Bool
-    
+
     enum CodingKeys: String, CodingKey {
         case text
         case isCorrect

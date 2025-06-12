@@ -10,21 +10,21 @@ import Foundation
 enum FeedbackPhrase {
     case good
     case bad
-    
+
     private static let goodKeys = [
         "feedback.good.1",
         "feedback.good.2",
         "feedback.good.3",
         "feedback.good.4"
     ]
-    
+
     private static let badKeys = [
         "feedback.bad.1",
         "feedback.bad.2",
         "feedback.bad.3",
         "feedback.bad.4"
     ]
-    
+
     static func random(for type: FeedbackPhrase) -> String {
         let keys: [String]
         switch type {

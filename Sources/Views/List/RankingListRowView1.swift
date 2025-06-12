@@ -10,7 +10,7 @@ import SwiftUI
 struct RankingListRowView1: View {
     let playerName: String
     let score: Int
-    
+
     var body: some View {
         ZStack {
             Rectangle()
@@ -23,7 +23,7 @@ struct RankingListRowView1: View {
                     .padding(.leading, 20)
 
                 Spacer()
-                
+
                 Text(String(score))
                     .font(Font.custom("Dongle-Regular", size: 32))
                     .foregroundStyle(Color.lightGray)

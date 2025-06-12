@@ -10,7 +10,7 @@ import SwiftUI
 struct HeaderView: View {
     let username: String
     let score: Int
-    
+
     var body: some View {
         HStack {
             Image("account")
@@ -20,7 +20,7 @@ struct HeaderView: View {
             Text(username)
                 .font(.custom("Dongle-Regular", size: 26))
                 .foregroundStyle(Color.violet)
-            
+
             Spacer()
 
             ZStack {

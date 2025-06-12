@@ -14,7 +14,7 @@ struct MainQuizView: View {
     @State private var showingFeedback = false
     @State private var selectedAnswerID: UUID?
     @State private var isCorrect: Bool? = nil
-    
+
     // MARK: - Init with loading questions
     init(viewModel: MainQuizViewModel) {
         self.viewModel = viewModel
@@ -22,13 +22,13 @@ struct MainQuizView: View {
             await viewModel.loadQuestions()
         }
     }
-    
+
     // MARK: - View
     var body: some View {
         ZStack {
             Color.lightGray
                 .ignoresSafeArea()
-            
+
             if viewModel.isQuizFinished {
                 ResultScoreView(username: viewModel.username)
             } else if viewModel.isLoading {
@@ -39,7 +39,7 @@ struct MainQuizView: View {
                 let currentQuestion = viewModel.questions[viewModel.currentQuestionIndex]
                 VStack {
                     HeaderView(username: viewModel.username, score: viewModel.score)
-                    
+
                     ZStack {
                         RoundedRectangle(cornerRadius: 19)
                             .stroke(Color.violet, lineWidth: 4)
@@ -49,7 +49,7 @@ struct MainQuizView: View {
                             .foregroundStyle(Color.violet)
                             .padding(5)
                     }
-                    
+
                     ZStack {
                         RoundedRectangle(cornerRadius: 19)
                             .stroke(Color.violet, lineWidth: 4)
@@ -67,12 +67,12 @@ struct MainQuizView: View {
                                 Text("Aucune image")
                                     .frame(maxWidth: .infinity, maxHeight: 160)
                             }
-                            
+
                             Text(currentQuestion.question.fr)
                                 .font(Font.custom("Dongle-Regular", size: 26))
                                 .foregroundStyle(Color.navyBlue)
                                 .padding(.horizontal)
-                            
+
                             ForEach(currentQuestion.answers) { answer in
                                 Button(action: {
                                     selectedAnswerID = answer.id
@@ -98,8 +98,7 @@ struct MainQuizView: View {
                     }
                 }
                 .padding(.horizontal, 20)
-                
-                // Affichage du feedback directement dans la vue principale
+
                 if showingFeedback {
                     AnswerRevealView(
                         isCorrect: isCorrect ?? false,

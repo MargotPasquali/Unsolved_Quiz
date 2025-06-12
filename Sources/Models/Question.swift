@@ -14,7 +14,7 @@ struct Question: Codable, Identifiable {
     let answers: [Answer]
     let imageUrl: String
     let anecdote: TranslatedText
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case question

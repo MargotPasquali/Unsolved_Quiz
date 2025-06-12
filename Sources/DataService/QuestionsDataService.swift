@@ -23,7 +23,7 @@ final class RemoteQuestionsDataService: QuestionsDataService {
         print("Nombre de questions décodées: \(questions.count)")
         return questions
     }
-    
+
     func isQuestionCorrect(question: Question, selectedAnswerID: UUID) -> Bool {
         guard let selectedAnswer = question.answers.first(where: { $0.id == selectedAnswerID }) else {
             print("Réponse sélectionnée non trouvée pour l'ID: \(selectedAnswerID)")

@@ -10,12 +10,12 @@ import SwiftUI
 
 struct RankingList: View {
     @ObservedObject var viewModel: EndGameViewModel
-    
+
     var body: some View {
         ZStack {
             Color.lightGray
                 .ignoresSafeArea()
-            
+
             VStack(spacing: 15) {
                 // En-tête
                 ZStack {
@@ -27,16 +27,16 @@ struct RankingList: View {
                             .foregroundStyle(Color.lightGray)
                             .font(Font.custom("Dongle-Bold", size: 32))
                             .padding(.leading, 20)
-                        
+
                         Spacer()
-                        
+
                         Text("Score_text_title")
                             .foregroundStyle(Color.lightGray)
                             .font(Font.custom("Dongle-Bold", size: 32))
                             .padding(.trailing, 20)
                     }
                 }
-                
+
                 if viewModel.isLoading {
                     ProgressView() // Indicateur de chargement
                 } else if let errorMessage = viewModel.errorMessage {
@@ -55,8 +55,7 @@ struct RankingList: View {
                         }
                     }
                 }
-                
-                // Bouton replay
+
                 NavigationLink(destination: WelcomeView(viewModel: StartNewGameViewModel())) {
                     Text("replay_button")
                         .frame(width: 350, height: 50)
@@ -69,7 +68,6 @@ struct RankingList: View {
             }
             .padding(.horizontal, 20)
             .task {
-                // Récupérer les scores quand la vue apparaît
                 await viewModel.fetchRankingList()
             }
         }
