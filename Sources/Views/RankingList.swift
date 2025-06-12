@@ -9,12 +9,15 @@
 import SwiftUI
 
 struct RankingList: View {
+    @ObservedObject var viewModel: EndGameViewModel
+    
     var body: some View {
         ZStack {
             Color.lightGray
                 .ignoresSafeArea()
-
+            
             VStack(spacing: 15) {
+                // En-tête
                 ZStack {
                     RoundedRectangle(cornerRadius: 19)
                         .fill(Color.violet)
@@ -24,9 +27,9 @@ struct RankingList: View {
                             .foregroundStyle(Color.lightGray)
                             .font(Font.custom("Dongle-Bold", size: 32))
                             .padding(.leading, 20)
-
+                        
                         Spacer()
-
+                        
                         Text("Score_text_title")
                             .foregroundStyle(Color.lightGray)
                             .font(Font.custom("Dongle-Bold", size: 32))
@@ -34,30 +37,45 @@ struct RankingList: View {
                     }
                 }
                 
-                ZStack {
-                    VStack {
-                        RoundedRectangle(cornerRadius: 19)
-                            .stroke(Color.violet, lineWidth: 4)
-                            .padding(-1)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .padding(.bottom, 15)
-                        
-                        NavigationLink(destination: WelcomeView(viewModel: StartNewGameViewModel())) {
-                            Text("replay_button")
-                                .frame(width: 350, height: 50)
-                                .padding(5)
-                                .background(Color.navyBlue)
-                                .font(Font.custom("Dongle-Bold", size: 40))
-                                .foregroundStyle(Color.lightGray)
-                                .cornerRadius(19)
+                if viewModel.isLoading {
+                    ProgressView() // Indicateur de chargement
+                } else if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red) // Message d’erreur
+                } else {
+                    ScrollView {
+                        VStack(spacing: 10) {
+                            ForEach(Array(viewModel.playerScores.enumerated()), id: \.element.id) { index, playerScore in
+                                if index % 2 == 0 {
+                                    RankingListRowView1(playerName: playerScore.playerName, score: playerScore.score)
+                                } else {
+                                    RankingListRowView2(playerName: playerScore.playerName, score: playerScore.score)
+                                }
+                            }
                         }
                     }
                 }
-            }.padding(.horizontal, 20)
+                
+                // Bouton replay
+                NavigationLink(destination: WelcomeView(viewModel: StartNewGameViewModel())) {
+                    Text("replay_button")
+                        .frame(width: 350, height: 50)
+                        .padding(5)
+                        .background(Color.navyBlue)
+                        .font(Font.custom("Dongle-Bold", size: 40))
+                        .foregroundStyle(Color.lightGray)
+                        .cornerRadius(19)
+                }
+            }
+            .padding(.horizontal, 20)
+            .task {
+                // Récupérer les scores quand la vue apparaît
+                await viewModel.fetchRankingList()
+            }
         }
     }
 }
 
 #Preview {
-    RankingList()
+    RankingList(viewModel: EndGameViewModel())
 }

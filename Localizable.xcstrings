@@ -112,9 +112,6 @@
         }
       }
     },
-    "Joueur1" : {
-
-    },
     "new_game_button" : {
       "localizations" : {
         "en" : {
@@ -229,9 +226,6 @@
           }
         }
       }
-    },
-    "Score" : {
-
     },
     "Score_text_title" : {
       "extractionState" : "manual",

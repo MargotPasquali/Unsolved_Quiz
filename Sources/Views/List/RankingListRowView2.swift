@@ -8,20 +8,23 @@
 import SwiftUI
 
 struct RankingListRowView2: View {
+    let playerName: String
+    let score: Int
+    
     var body: some View {
         ZStack {
             Rectangle()
                 .fill(Color.lightGray)
                 .frame(maxWidth: .infinity, maxHeight: 50)
             HStack {
-                Text("Joueur1")
+                Text(playerName)
                     .font(Font.custom("Dongle-Regular", size: 32))
                     .foregroundStyle(Color.violet)
                     .padding(.leading, 20)
 
                 Spacer()
                 
-                Text("Score")
+                Text(String(score))
                     .font(Font.custom("Dongle-Regular", size: 32))
                     .foregroundStyle(Color.violet)
                     .padding(.trailing, 20)
@@ -31,5 +34,5 @@ struct RankingListRowView2: View {
 }
 
 #Preview {
-    RankingListRowView2()
+    RankingListRowView2(playerName: "Test", score: 4)
 }

@@ -43,7 +43,7 @@ struct ResultScoreView: View {
                 .padding(.bottom, 20)
                 
                 Spacer()
-                NavigationLink(destination: RankingList()) {
+                NavigationLink(destination: RankingList(viewModel: EndGameViewModel())) {
                     Text("players_raking_button")
                         .frame(width: 350, height: 50)
                         .padding(5)

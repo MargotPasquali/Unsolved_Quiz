@@ -112,7 +112,7 @@ struct MainQuizView: View {
                         }
                     )
                     .transition(.opacity) // Transition en fondu
-                    .animation(.easeInOut, value: showingFeedback) // Animation fluide
+                    .animation(.easeInOut, value: showingFeedback)
                 }
             } else {
                 Text("Aucune question disponible")
@@ -121,15 +121,14 @@ struct MainQuizView: View {
             }
         }
     }
-    
-    // Fonction pour déterminer la couleur de fond d'une réponse spécifique
+
     private func colorForAnswer(_ answerID: UUID) -> Color {
         if let selectedID = selectedAnswerID, selectedID == answerID {
             if let isCorrect = isCorrect {
-                return isCorrect ? .accent : .pinkRed // Vert si correct, rouge si incorrect
+                return isCorrect ? .accent : .pinkRed
             }
         }
-        return .navyBlue // Couleur par défaut pour les réponses non sélectionnées
+        return .navyBlue
     }
 }
 

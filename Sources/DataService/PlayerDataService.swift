@@ -11,6 +11,7 @@ import FirebaseFirestore
 protocol PlayerDataService {
     func saveUsername(_ username: String) async throws
     func savePlayerScore(username: String, score: Int) async throws
+    func fetchPlayerScores() async throws -> [PlayerScore]
 }
 
 final class RemotePlayerDataService: PlayerDataService {
@@ -32,5 +33,23 @@ final class RemotePlayerDataService: PlayerDataService {
         ]
         try await db.collection("scores").addDocument(data: data)
         print("Score enregistré avec succès pour \(username): \(score)")
+    }
+    
+    func fetchPlayerScores() async throws -> [PlayerScore] {
+        let snapshot = try await db.collection("scores")
+            .order(by: "score", descending: true)
+            .getDocuments()
+        print("Nombre de documents récupérés : \(snapshot.documents.count)")
+        snapshot.documents.forEach { doc in
+            print("Données du document : \(doc.data())")
+        }
+        return snapshot.documents.map { doc in
+            let data = doc.data()
+            return PlayerScore(
+                id: doc.documentID,
+                playerName: data["player"] as? String ?? "Inconnu",
+                score: data["score"] as? Int ?? 0
+            )
+        }
     }
 }
