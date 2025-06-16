@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ResultScoreView: View {
     let username: String
+    let score: Int
+    
+    @ObservedObject var endGameViewModel: EndGameViewModel
 
     var body: some View {
         ZStack {
@@ -36,7 +39,7 @@ struct ResultScoreView: View {
                     RoundedRectangle(cornerRadius: 19)
                         .stroke(Color.navyBlue, lineWidth: 4)
                         .frame(width: 350, height: 50)
-                    Text("Votre score: 5/20")
+                    Text("Votre score: \(score)/10")
                         .foregroundStyle(Color.navyBlue)
                         .font(Font.custom("Dongle-Bold", size: 48))
                 }
@@ -64,10 +67,15 @@ struct ResultScoreView: View {
                         .cornerRadius(19)
                 }
             }
+        }.onAppear {
+            Task {
+                print("Enregistrement du score : \(score) pour \(username)")
+                await endGameViewModel.saveScore(username: username, score: score)
+            }
         }
     }
 }
 
 #Preview {
-    ResultScoreView(username: "test")
+    ResultScoreView(username: "test", score: 5, endGameViewModel: EndGameViewModel())
 }

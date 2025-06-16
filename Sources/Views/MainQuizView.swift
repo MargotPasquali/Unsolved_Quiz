@@ -15,6 +15,9 @@ struct MainQuizView: View {
     @State private var selectedAnswerID: UUID?
     @State private var isCorrect: Bool? = nil
 
+    // MARK: - Constants
+    private let languageKey = LanguageManager.shared.getLanguageKey()
+
     // MARK: - Init with loading questions
     init(viewModel: MainQuizViewModel) {
         self.viewModel = viewModel
@@ -30,7 +33,7 @@ struct MainQuizView: View {
                 .ignoresSafeArea()
 
             if viewModel.isQuizFinished {
-                ResultScoreView(username: viewModel.username)
+                ResultScoreView(username: viewModel.username, score: viewModel.score, endGameViewModel: EndGameViewModel())
             } else if viewModel.isLoading {
                 Text("questions_loading_text")
                     .font(Font.custom("Dongle-Regular", size: 26))
@@ -68,7 +71,7 @@ struct MainQuizView: View {
                                     .frame(maxWidth: .infinity, maxHeight: 160)
                             }
 
-                            Text(currentQuestion.question.fr)
+                            Text(currentQuestion.question[languageKey] ?? "")
                                 .font(Font.custom("Dongle-Regular", size: 26))
                                 .foregroundStyle(Color.navyBlue)
                                 .padding(.horizontal)
@@ -77,12 +80,12 @@ struct MainQuizView: View {
                                 Button(action: {
                                     selectedAnswerID = answer.id
                                     isCorrect = viewModel.isQuestionCorrect(question: currentQuestion, selectedAnswerID: answer.id)
-                                    // Délai de 1 seconde avant d'afficher le feedback
+
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                         showingFeedback = true
                                     }
                                 }) {
-                                    Text(answer.text.fr)
+                                    Text(answer.text[languageKey] ?? "")
                                         .font(Font.custom("Dongle-Regular", size: 26))
                                         .foregroundStyle(Color.lightGray)
                                         .padding()
@@ -102,7 +105,7 @@ struct MainQuizView: View {
                 if showingFeedback {
                     AnswerRevealView(
                         isCorrect: isCorrect ?? false,
-                        anecdote: currentQuestion.anecdote.fr,
+                        anecdote: currentQuestion.anecdote[languageKey] ?? "",
                         onContinue: {
                             viewModel.answerQuestion(selectedAnswerID: selectedAnswerID ?? UUID())
                             showingFeedback = false
@@ -110,11 +113,11 @@ struct MainQuizView: View {
                             isCorrect = nil
                         }
                     )
-                    .transition(.opacity) // Transition en fondu
+                    .transition(.opacity)
                     .animation(.easeInOut, value: showingFeedback)
                 }
             } else {
-                Text("Aucune question disponible")
+                Text("no_questions_available")
                     .font(Font.custom("Dongle-Regular", size: 26))
                     .foregroundStyle(Color.red)
             }

@@ -17,7 +17,7 @@ struct RankingList: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 15) {
-                // En-tête
+
                 ZStack {
                     RoundedRectangle(cornerRadius: 19)
                         .fill(Color.violet)
@@ -38,13 +38,13 @@ struct RankingList: View {
                 }
 
                 if viewModel.isLoading {
-                    ProgressView() // Indicateur de chargement
+                    ProgressView()
                 } else if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
-                        .foregroundColor(.red) // Message d’erreur
+                        .foregroundColor(.red)
                 } else {
                     ScrollView {
-                        VStack(spacing: 10) {
+                        VStack(spacing: 0) {
                             ForEach(Array(viewModel.playerScores.enumerated()), id: \.element.id) { index, playerScore in
                                 if index % 2 == 0 {
                                     RankingListRowView1(playerName: playerScore.playerName, score: playerScore.score)

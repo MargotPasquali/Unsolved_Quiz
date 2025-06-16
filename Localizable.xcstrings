@@ -4,9 +4,6 @@
     "" : {
 
     },
-    "Anecdote : %@" : {
-
-    },
     "answer.correct" : {
       "localizations" : {
         "en" : {
@@ -40,9 +37,6 @@
       }
     },
     "Aucune image" : {
-
-    },
-    "Aucune question disponible" : {
 
     },
     "before_begging_a_new_game" : {
@@ -96,6 +90,142 @@
     "Entrez votre pseudo" : {
 
     },
+    "feedback.bad.1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not quite…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pas tout à fait…"
+          }
+        }
+      }
+    },
+    "feedback.bad.2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Essaie encore !"
+          }
+        }
+      }
+    },
+    "feedback.bad.3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops, wrong answer."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Oups, mauvaise réponse."
+          }
+        }
+      }
+    },
+    "feedback.bad.4" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "That's not it."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ce n’est pas ça."
+          }
+        }
+      }
+    },
+    "feedback.good.1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Well done!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bien joué !"
+          }
+        }
+      }
+    },
+    "feedback.good.2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Great job!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Excellent travail !"
+          }
+        }
+      }
+    },
+    "feedback.good.3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Awesome!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Superbe !"
+          }
+        }
+      }
+    },
+    "feedback.good.4" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You did well!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bravo !"
+          }
+        }
+      }
+    },
     "game_is_over" : {
       "localizations" : {
         "en" : {
@@ -143,6 +273,9 @@
           }
         }
       }
+    },
+    "no_questions_available" : {
+
     },
     "player_name_title" : {
       "localizations" : {
@@ -279,7 +412,7 @@
         }
       }
     },
-    "Votre score: 5/20" : {
+    "Votre score: %lld/10" : {
 
     }
   },

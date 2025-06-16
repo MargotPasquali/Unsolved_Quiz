@@ -8,11 +8,12 @@
 import Foundation
 
 struct Answer: Codable, Identifiable {
-    let id = UUID()
-    let text: TranslatedText
+    let id: UUID
+    let text: [String: String]
     let isCorrect: Bool
 
     enum CodingKeys: String, CodingKey {
+        case id
         case text
         case isCorrect
     }

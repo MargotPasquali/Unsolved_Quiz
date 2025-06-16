@@ -10,11 +10,11 @@ import FirebaseFirestore
 
 struct Question: Codable, Identifiable {
     @DocumentID var id: String?
-    let question: TranslatedText
+    let question: [String: String]
     let answers: [Answer]
     let imageUrl: String
-    let anecdote: TranslatedText
-
+    let anecdote: [String: String]
+    
     enum CodingKeys: String, CodingKey {
         case id
         case question

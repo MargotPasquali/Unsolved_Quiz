@@ -43,12 +43,12 @@ final class MainQuizViewModel: ObservableObject {
     func loadQuestions() async {
         do {
             let fetchedQuestions = try await questionService.fetchQuestionsForUser(limit: totalQuestions)
-            print("Questions récupérées : \(fetchedQuestions.count)") // Devrait afficher 10
+            print("Questions récupérées : \(fetchedQuestions.count)")
             await MainActor.run {
-                print("Avant assignation : questions.count = \(questions.count)") // Devrait afficher 0
+                print("Avant assignation : questions.count = \(questions.count)")
                 questions = fetchedQuestions
                 isLoading = false
-                print("Après assignation : questions.count = \(questions.count)") // Devrait afficher 10
+                print("Après assignation : questions.count = \(questions.count)")
             }
         } catch {
             await MainActor.run {

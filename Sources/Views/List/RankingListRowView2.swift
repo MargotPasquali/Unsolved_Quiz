@@ -28,7 +28,7 @@ struct RankingListRowView2: View {
                     .font(Font.custom("Dongle-Regular", size: 32))
                     .foregroundStyle(Color.violet)
                     .padding(.trailing, 20)
-            }
+            }.padding(.vertical, 0)
         }
     }
 }

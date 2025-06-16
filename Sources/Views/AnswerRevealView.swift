@@ -52,7 +52,7 @@ struct AnswerRevealView: View {
                         .lineLimit(nil)
                         .fixedSize(horizontal: false, vertical: true)
 
-                    Text("Anecdote : \(anecdote)")
+                    Text(anecdote)
                         .font(Font.custom("Dongle-Regular", size: 26))
                         .foregroundStyle(Color.navyBlue)
                         .padding(.leading, 10)
