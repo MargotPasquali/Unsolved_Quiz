@@ -13,26 +13,26 @@ struct RankingList: View {
 
     var body: some View {
         ZStack {
-            Color.lightGray
+            Color.gray
                 .ignoresSafeArea()
 
             VStack(spacing: 15) {
 
                 ZStack {
                     RoundedRectangle(cornerRadius: 19)
-                        .fill(Color.violet)
+                        .fill(Color.red)
                         .frame(maxWidth: .infinity, maxHeight: 60)
                     HStack {
                         Text("player_name_title")
-                            .foregroundStyle(Color.lightGray)
-                            .font(Font.custom("Dongle-Bold", size: 32))
+                            .foregroundStyle(Color.gray)
+                            .font(Font.custom("BeVietnamPro-SemiBold", size: 32))
                             .padding(.leading, 20)
 
                         Spacer()
 
                         Text("Score_text_title")
-                            .foregroundStyle(Color.lightGray)
-                            .font(Font.custom("Dongle-Bold", size: 32))
+                            .foregroundStyle(Color.gray)
+                            .font(Font.custom("BeVietnamPro-SemiBold", size: 32))
                             .padding(.trailing, 20)
                     }
                 }
@@ -56,13 +56,13 @@ struct RankingList: View {
                     }
                 }
 
-                NavigationLink(destination: WelcomeView(viewModel: StartNewGameViewModel())) {
+                NavigationLink(destination: StartNewGameView(viewModel: StartNewGameViewModel())) {
                     Text("replay_button")
                         .frame(width: 350, height: 50)
                         .padding(5)
-                        .background(Color.navyBlue)
-                        .font(Font.custom("Dongle-Bold", size: 40))
-                        .foregroundStyle(Color.lightGray)
+                        .background(Color.blue)
+                        .font(Font.custom("BeVietnamPro-SemiBold", size: 40))
+                        .foregroundStyle(Color.gray)
                         .cornerRadius(19)
                 }
             }

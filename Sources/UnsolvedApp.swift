@@ -15,7 +15,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
       // Customize back button with a white arrow
       let backButtonImage = UIImage(systemName: "arrow.left")?
-          .withTintColor(.pinkRed, renderingMode: .alwaysOriginal)
+          .withTintColor(.black, renderingMode: .alwaysOriginal)
       UINavigationBar.appearance().backIndicatorImage = backButtonImage
       UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonImage
 
@@ -40,6 +40,7 @@ struct UnsolvedApp: App {
     var body: some Scene {
         WindowGroup {
             WelcomeView(viewModel: StartNewGameViewModel())
+
         }
     }
 }

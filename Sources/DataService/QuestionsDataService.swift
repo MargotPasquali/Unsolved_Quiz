@@ -14,21 +14,21 @@ protocol QuestionsDataService {
 }
 
 final class RemoteQuestionsDataService: QuestionsDataService {
-    
+
     func fetchQuestionsForUser(limit: Int) async throws -> [Question] {
             let db = Firestore.firestore()
             let languageKey = LanguageManager.shared.getLanguageKey()
             print("Récupération de \(limit) questions depuis Firestore en langue: \(languageKey)")
             let snapshot = try await db.collection("questions").limit(to: limit).getDocuments()
             print("Nombre de documents récupérés: \(snapshot.documents.count)")
-            
+
             return snapshot.documents.map { doc in
                 let data = doc.data()
-                
+
                 // Récupérer le texte de la question
                 let questionText = data["question"] as? [String: String] ?? [:]
                 let question = questionText[languageKey] ?? questionText["en"] ?? ""
-                
+
                 // Récupérer les réponses
                 let answersData = data["answers"] as? [[String: Any]] ?? []
                 let answers = answersData.map { answer in
@@ -39,14 +39,14 @@ final class RemoteQuestionsDataService: QuestionsDataService {
                         isCorrect: answer["isCorrect"] as? Bool ?? false
                     )
                 }
-                
+
                 // Récupérer l'anecdote
                 let anecdoteText = data["anecdote"] as? [String: String] ?? [:]
                 let anecdote = anecdoteText[languageKey] ?? anecdoteText["en"] ?? ""
-                
+
                 // Récupérer l'URL de l'image (non localisée)
                 let imageUrl = data["imageUrl"] as? String ?? ""
-                
+
                 return Question(
                     id: doc.documentID,
                     question: [languageKey: question],

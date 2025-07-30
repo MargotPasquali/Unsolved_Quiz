@@ -15,7 +15,7 @@ struct ResultScoreView: View {
 
     var body: some View {
         ZStack {
-            Color.lightGray
+            Color.gray
                 .ignoresSafeArea()
 
             AnimatedBackground()
@@ -24,24 +24,24 @@ struct ResultScoreView: View {
                 Spacer()
 
                 Text("congrats_text")
-                    .foregroundStyle(Color.navyBlue)
-                    .font(Font.custom("Dongle-Bold", size: 96))
+                    .foregroundStyle(Color.blue)
+                    .font(Font.custom("BeVietnamPro-SemiBold", size: 96))
                     .padding(.top, 30)
                 Image("cup")
                     .resizable()
                     .frame(width: 90, height: 90)
 
                 Text("game_is_over")
-                    .foregroundStyle(Color.navyBlue)
-                    .font(Font.custom("Dongle-Regular", size: 48))
+                    .foregroundStyle(Color.blue)
+                    .font(Font.custom("BeVietnamPro-SemiBold", size: 48))
 
                 ZStack {
                     RoundedRectangle(cornerRadius: 19)
-                        .stroke(Color.navyBlue, lineWidth: 4)
+                        .stroke(Color.blue, lineWidth: 4)
                         .frame(width: 350, height: 50)
                     Text("Votre score: \(score)/10")
-                        .foregroundStyle(Color.navyBlue)
-                        .font(Font.custom("Dongle-Bold", size: 48))
+                        .foregroundStyle(Color.blue)
+                        .font(Font.custom("BeVietnamPro-SemiBold", size: 48))
                 }
                 .padding(.bottom, 20)
 
@@ -50,9 +50,9 @@ struct ResultScoreView: View {
                     Text("players_raking_button")
                         .frame(width: 350, height: 50)
                         .padding(5)
-                        .background(Color.violet)
-                        .font(Font.custom("Dongle-Bold", size: 40))
-                        .foregroundStyle(Color.accent)
+                        .background(Color.red)
+                        .font(Font.custom("BeVietnamPro-SemiBold", size: 40))
+                        .foregroundStyle(Color.green)
                         .cornerRadius(19)
                 }
                 .padding(.bottom, 10)
@@ -61,9 +61,9 @@ struct ResultScoreView: View {
                     Text("replay_button")
                         .frame(width: 350, height: 50)
                         .padding(5)
-                        .background(Color.navyBlue)
-                        .font(Font.custom("Dongle-Bold", size: 40))
-                        .foregroundStyle(Color.lightGray)
+                        .background(Color.blue)
+                        .font(Font.custom("BeVietnamPro-SemiBold", size: 40))
+                        .foregroundStyle(Color.gray)
                         .cornerRadius(19)
                 }
             }

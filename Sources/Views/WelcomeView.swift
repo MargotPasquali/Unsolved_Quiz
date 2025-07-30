@@ -14,32 +14,47 @@ struct WelcomeView: View {
         NavigationStack {
             ZStack {
                 AnimatedBackground()
+
                 VStack(alignment: .center) {
-                    Text("Unsolved")
-                        .font(.custom("JustMeAgainDownHere", size: 96))
-                        .foregroundStyle(Color.violet)
-                        .offset(y: -29)
-                    Text("Quiz")
-                        .font(.custom("RubikGlitch-Regular", size: 64))
-                        .foregroundStyle(Color.accent)
-                        .offset(x: 78, y: -70)
+                    Image("logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 200, height: 200)
+                        .offset(y: -30)
+
+                    Spacer()
 
                     NavigationLink(destination: StartNewGameView(viewModel: viewModel)) {
                         Text("new_game_button")
-                            .frame(width: 240, height: 50)
+                            .navigationBarBackButtonHidden(true)
+                            .frame(width: 220, height: 40)
                             .padding()
-                            .background(Color.navyBlue)
-                            .font(Font.custom("Dongle-Bold", size: 40))
-                            .foregroundStyle(Color.lightGray)
-                            .cornerRadius(19)
+                            .font(Font.custom("BeVietnamPro-SemiBold", size: 22))
+                            .foregroundStyle(Color.lightBeige)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 19)
-                                    .stroke(Color.accent, lineWidth: 1)
+                                RoundedRectangle(cornerRadius: 32)
+                                    .stroke(Color.lightBeige, lineWidth: 1)
                             )
-                    }
-                    .padding(.top, 20)
-                    .padding(.horizontal, 50)
-                    .offset(y: -99)
+                    }.offset(y: -50)
+
+                    Spacer()
+
+                    VStack {
+                        Text("HELLO DUDE,")
+                            .font(Font.custom("BeVietnamPro-SemiBold", size: 14))
+                            .foregroundStyle(Color.lightBeige)
+
+                        Text("YOUR NOT READY TO THE NEXT LEVEL\nPLEASE BE CAREFUL")
+                            .font(Font.custom("BeVietnamPro-Light", size: 14))
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(Color.lightBeige)
+                            .padding(.bottom, 15)
+
+                        Capsule()
+                            .frame(width: 34, height: 1)
+                            .foregroundColor(.lightBeige)
+
+                    }.offset(y: -70)
                 }
             }
 

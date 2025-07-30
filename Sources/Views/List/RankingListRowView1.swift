@@ -14,19 +14,19 @@ struct RankingListRowView1: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(Color.violet)
+                .fill(Color.red)
                 .frame(maxWidth: .infinity, maxHeight: 50)
             HStack {
                 Text(playerName)
-                    .font(Font.custom("Dongle-Regular", size: 32))
-                    .foregroundStyle(Color.lightGray)
+                    .font(Font.custom("BeVietnamPro-SemiBold", size: 32))
+                    .foregroundStyle(Color.gray)
                     .padding(.leading, 20)
 
                 Spacer()
 
                 Text(String(score))
-                    .font(Font.custom("Dongle-Regular", size: 32))
-                    .foregroundStyle(Color.lightGray)
+                    .font(Font.custom("BeVietnamPro-SemiBold", size: 32))
+                    .foregroundStyle(Color.gray)
                     .padding(.trailing, 20)
             }
         }

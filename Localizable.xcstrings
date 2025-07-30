@@ -36,9 +36,6 @@
         }
       }
     },
-    "Aucune image" : {
-
-    },
     "before_begging_a_new_game" : {
       "localizations" : {
         "en" : {
@@ -242,6 +239,9 @@
         }
       }
     },
+    "HELLO DUDE," : {
+
+    },
     "new_game_button" : {
       "localizations" : {
         "en" : {
@@ -253,7 +253,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Commencer"
+            "value" : "Nouvelle Partie"
           }
         }
       }
@@ -270,6 +270,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Question suivante"
+          }
+        }
+      }
+    },
+    "no_image_found" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No image found"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune image disponible"
           }
         }
       }
@@ -329,6 +345,7 @@
       }
     },
     "Quiz" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -397,6 +414,7 @@
       }
     },
     "Unsolved" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -413,6 +431,9 @@
       }
     },
     "Votre score: %lld/10" : {
+
+    },
+    "YOUR NOT READY TO THE NEXT LEVEL\nPLEASE BE CAREFUL" : {
 
     }
   },

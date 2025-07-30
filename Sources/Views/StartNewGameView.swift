@@ -14,35 +14,35 @@ struct StartNewGameView: View {
 
     var body: some View {
         ZStack {
-            Color.navyBlue
+            Color.blue
                 .ignoresSafeArea()
 
             VStack(alignment: .center, spacing: 20) {
                 Text("before_begging_a_new_game")
-                    .font(Font.custom("Dongle-Bold", size: 48))
-                    .foregroundStyle(Color.accent)
+                    .font(Font.custom("BeVietnamPro-SemiBold", size: 48))
+                    .foregroundStyle(Color.green)
                     .padding(.top, 30)
 
                 Text("choose_name_text")
-                    .font(Font.custom("Dongle-Regular", size: 40))
-                    .foregroundStyle(Color.lightGray)
+                    .font(Font.custom("BeVietnamPro-SemiBold", size: 40))
+                    .foregroundStyle(Color.gray)
 
                 TextField("", text: $viewModel.username, prompt: Text("Entrez votre pseudo").foregroundStyle(Color.gray))
-                    .font(Font.custom("Dongle-Regular", size: 40))
-                    .foregroundStyle(Color.accent)
+                    .font(Font.custom("BeVietnamPro-SemiBold", size: 40))
+                    .foregroundStyle(Color.green)
                     .textFieldStyle(.plain)
                     .autocapitalization(.none)
                     .padding(.horizontal, 20)
-                    .background(Color.navyBlue)
+                    .background(Color.blue)
                     .multilineTextAlignment(.center)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.accent, lineWidth: 1)
+                            .stroke(Color.green, lineWidth: 1)
                     )
 
                 if let errorMessage = errorMessage {
                     Text(errorMessage)
-                        .font(Font.custom("Dongle-Regular", size: 24))
+                        .font(Font.custom("BeVietnamPro-SemiBold", size: 24))
                         .foregroundStyle(Color.red)
                 }
 
@@ -61,14 +61,14 @@ struct StartNewGameView: View {
                 }) {
                     if viewModel.isLoading {
                         ProgressView()
-                            .tint(Color.navyBlue)
+                            .tint(Color.blue)
                     } else {
                         Text("start_game_button")
                             .frame(width: 240, height: 50)
                             .padding()
-                            .background(viewModel.username.isEmpty ? Color.gray : Color.lightGray)
-                            .font(Font.custom("Dongle-Bold", size: 40))
-                            .foregroundStyle(Color.navyBlue)
+                            .background(viewModel.username.isEmpty ? Color.gray : Color.red)
+                            .font(Font.custom("BeVietnamPro-SemiBold", size: 40))
+                            .foregroundStyle(Color.blue)
                             .cornerRadius(19)
                     }
                 }

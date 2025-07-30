@@ -59,25 +59,28 @@ final class MainQuizViewModel: ObservableObject {
         }
     }
 
-    func answerQuestion(selectedAnswerID: UUID) {
-        print("Réponse sélectionnée pour la question \(currentQuestionIndex + 1): \(selectedAnswerID)")
-        let currentQuestion = questions[currentQuestionIndex]
-        if questionService.isQuestionCorrect(question: currentQuestion, selectedAnswerID: selectedAnswerID) {
-            score += 1
-            print("Réponse correcte, score actuel: \(score)")
-        } else {
-            print("Réponse incorrecte")
+    func checkAnswer(selectedAnswerID: UUID) -> Bool {
+            let currentQuestion = questions[currentQuestionIndex]
+            let isCorrect = questionService.isQuestionCorrect(question: currentQuestion, selectedAnswerID: selectedAnswerID)
+            if isCorrect {
+                score += 1
+                print("Réponse correcte, score actuel : \(score)")
+            } else {
+                print("Réponse incorrecte")
+            }
+            return isCorrect
         }
 
-        if currentQuestionIndex < questions.count - 1 {
-            currentQuestionIndex += 1
-            print("Passage à la question suivante: \(currentQuestionIndex + 1)")
-        } else {
-            isQuizFinished = true
-            print("Quiz terminé, score final: \(score)")
+        func answerQuestion() {
+            if currentQuestionIndex < questions.count - 1 {
+                currentQuestionIndex += 1
+                print("Passage à la question suivante : \(currentQuestionIndex + 1)")
+            } else {
+                isQuizFinished = true
+                print("Quiz terminé, score final : \(score)")
+            }
         }
-    }
-
+    
     func isQuestionCorrect(question: Question, selectedAnswerID: UUID) -> Bool {
         return questionService.isQuestionCorrect(question: question, selectedAnswerID: selectedAnswerID)
     }

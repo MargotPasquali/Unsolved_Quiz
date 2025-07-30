@@ -4,11 +4,11 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>JustMeAgainDownHere-Regular.ttf</string>
-		<string>RubikGlitch-Regular.ttf</string>
-		<string>Dongle-Bold.ttf</string>
-		<string>Dongle-Light.ttf</string>
-		<string>Dongle-Regular.ttf</string>
+		<string>BeVietnamPro-Bold.ttf</string>
+		<string>BeVietnamPro-Italic.ttf</string>
+		<string>BeVietnamPro-SemiBold.ttf</string>
+		<string>BeVietnamPro-Black.ttf</string>
+		<string>BeVietnamPro-Light.ttf</string>
 	</array>
 </dict>
 </plist>
